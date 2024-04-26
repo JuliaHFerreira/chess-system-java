@@ -1,6 +1,5 @@
 package application;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -52,15 +51,22 @@ public class UI {
 		}
 	}
 	
-	public static void printMatch(ChessMatch chessmatch, List<ChessPiece> captured) {
-		printBoard(chessmatch.getPieces());
+	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
+		printBoard(chessMatch.getPieces());
 		System.out.println();
 		printCapturedPieces(captured);
 		System.out.println();
-		System.out.println("Turn : " + chessmatch.getTurn());
-		System.out.println("Waiting player: " + chessmatch.getCurrentPlayer());
-		if(chessmatch.getCheck()) {
-			System.out.println("Check!");
+		System.out.println("Turn : " + chessMatch.getTurn());
+		
+		if(!chessMatch.getCheckMate()) {
+			System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+			if(chessMatch.getCheck()) {
+				System.out.println("Check!");
+			}
+		}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println("Winner: " + chessMatch.getCurrentPlayer());
 		}
 	}
 
